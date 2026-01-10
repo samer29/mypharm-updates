@@ -1,3 +1,27 @@
+=== Version 7.2.9 (10 Janvier 2026) ===
+✨ NOUVEAUTÉS :
+- Amélioration de la recherche de DCI dans MouvementTracker pour gérer les cas où le DCI est modifié dans la table Stock
+
+🐛 CORRECTIONS :
+- Correction majeure du mode mensuel dans PrintDataCM : le rapport ne retournait plus une table vide
+- Correction de la recherche de services avec suffixes (ex: "Service - Personnel") dans les rapports mensuels
+- Correction du problème où txtDatePeremp disparaissait après la création d'un nouveau BL
+- Correction de la requête SQL pour les rapports Fournisseur (utilisation de MontantGlobal au lieu de PT)
+- Correction de l'incohérence dans les noms de tables SQL (Facture vs facture)
+- Correction du problème de récupération du DCI ID lors du tracking des mouvements après modification du DCI dans le stock
+
+🔧 AMÉLIORATIONS :
+- Amélioration des requêtes SQL pour les rapports mensuels : utilisation de LIKE avec condition OR pour gérer les services avec et sans suffixes
+- Création de méthodes spécialisées (getBLLocalByServiceLikeAndMonth, getBLLocalByExactServiceAndMonth) pour améliorer la maintenabilité
+- Amélioration de la méthode getDciIdFromStock pour rechercher d'abord dans le stock avant de chercher dans la table dci
+- Ajout de réinitialisation de txtDatePeremp (opacity, visibility, disable) dans les méthodes clearNewAddingFields, clearApprovFields et NewAppr
+- Amélioration de la gestion des requêtes SQL avec utilisation de PreparedStatement pour éviter les injections SQL
+- Mise à jour de toutes les méthodes de recherche de produits (getBLLocalByProductAndMonth, getTransfertByProductAndMonth) pour utiliser LIKE au lieu de comparaison exacte
+
+📋 NOTES TECHNIQUES :
+- Les requêtes SQL pour les rapports mensuels utilisent maintenant des conditions OR pour matcher les services exacts et avec suffixes
+- Le système de tracking des mouvements utilise maintenant getDciIdFromStock qui recherche d'abord dans le stock avant la table dci
+
 === Version 7.2.7.1 (08 Janvier 2025) ===
 ✨ NOUVEAUTÉS :
 - Fonctionnalité d'édition pour Wilaya, Etablissement et EPH
