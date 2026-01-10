@@ -1,0 +1,126 @@
+=== Version 7.2.7.1 (08 Janvier 2025) ===
+✨ NOUVEAUTÉS :
+- Fonctionnalité d'édition pour Wilaya, Etablissement et EPH
+- Refactorisation du code PDF : création de fonctions partagées pour éviter la duplication
+- Optimisation des largeurs de colonnes dans les PDFs de décharge
+
+🔧 AMÉLIORATIONS :
+- Code plus maintenable avec fonctions partagées pour la génération de PDFs
+- Amélioration de la cohérence entre les différentes méthodes d'impression
+- Interface d'édition pour les informations d'établissement (Wilaya, Etablissement, EPH)
+
+=== Version 7.2.7 (08 Janvier 2025) ===
+✨ NOUVEAUTÉS :
+- Nouveau format de numérotation des BL basé sur l'année (format: NumAnnée)
+- Ajout de combobox de sélection d'année pour les BL, Transfert Entrée et Transfert Sortie
+- Fonctionnalité d'impression de décharge directement depuis l'interface
+- Système de suppression intelligente (CTRL+Z) pour le stock annuel
+- Suppression des mouvements originaux (APPROVISIONNEMENT/TRANSFERT_ENTREE) au lieu de créer des entrées négatives
+- Mise à jour intelligente du stock avec ajustement des mouvements originaux
+
+🐛 CORRECTIONS :
+- Correction du système de suppression de stock (suppression des mouvements originaux au lieu de créer des entrées négatives)
+- Correction de l'affichage dans le plan de gestion après suppression/mise à jour
+- Amélioration de la gestion des erreurs avec logging complet
+
+🔧 AMÉLIORATIONS :
+- Système de logging complet pour toutes les opérations de suppression et mise à jour
+- Logs détaillés dans le fichier logs/pharmacy-app.log pour le débogage
+- Amélioration de la traçabilité des opérations sur le stock
+- Interface utilisateur améliorée avec filtres par année
+- Impression TRANSFERT_ENTREE : masquage automatique des colonnes Dosage et Forme si vides
+- Ajustement des largeurs de colonnes dans les PDFs (colonne Produit plus large que Quantité)
+
+📋 PRÉREQUISITES POUR LA MISE À JOUR :
+- Créer les dossiers suivants dans le dossier reports/ :
+  * reports/DE/ (pour les décharges d'entrée)
+  * reports/DS/ (pour les décharges de sortie)
+- Créer la table wilayaetablissement dans la base de données avec les colonnes suivantes :
+  * ID (int(11), PRIMARY KEY, AUTO_INCREMENT)
+  * Wilaya (varchar(140), NOT NULL)
+  * Etablissement (varchar(130), NOT NULL)
+  * EPH (varchar(70), NOT NULL)
+
+=== Version 7.2.6 (04 Janvier 2025) ===
+✨ NOUVEAUTÉS :
+- Système complet de gestion des factures
+- Suppression de factures avec suppression automatique de tous les contenus associés
+- Modification du numéro de facture existante
+- Création de factures à partir de plusieurs BL (Bons de Livraison)
+- Génération automatique ou manuelle du numéro de facture
+- Rafraîchissement automatique des listes déroulantes (DCI, Dosage, Forme, Fournisseur, Gamme, TVA) lors de l'ajout de nouveaux éléments
+- Bouton de suppression individuelle pour les BL sélectionnés lors de la création de facture
+
+🐛 CORRECTIONS :
+- Correction du problème où les nouveaux éléments ajoutés (DCI, Dosage, Forme, etc.) n'apparaissaient pas immédiatement dans les listes déroulantes
+- Correction de l'auto-génération du numéro de facture lorsque "/" est saisi dans le champ facture
+- Mise à jour automatique de la gestion de stock annuel lors de la suppression de factures
+
+🔧 AMÉLIORATIONS :
+- Interface de gestion des factures avec onglets dédiés
+- Tableau interactif pour la gestion des factures existantes
+- Sélection multiple de BL pour créer une facture groupée
+- Intégration complète avec le système de gestion de stock annuel
+- Amélioration de l'expérience utilisateur avec rafraîchissement instantané des données
+
+=== Version 7.2.5 (03 Janvier 2025) ===
+✨ NOUVEAUTÉS :
+- Système de mise à jour automatique complet
+- Téléchargement des mises à jour avec barre de progression en temps réel
+- Fonctionnalité de pause/reprise du téléchargement
+- Affichage de l'emplacement de téléchargement des fichiers
+- Détection automatique du répertoire d'installation
+- Script d'installation automatique avec sauvegarde et restauration
+
+🐛 CORRECTIONS :
+- Gestion robuste des erreurs de connexion réseau (SSL, timeout, interruption)
+- Logique de nouvelle tentative automatique en cas d'erreur réseau (jusqu'à 3 tentatives)
+- Correction des erreurs de thread JavaFX pour les mises à jour de l'interface
+- Gestion des fichiers partiellement téléchargés (reprise automatique)
+- Correction des erreurs HTTP 416 (Range Not Satisfiable)
+
+🔧 AMÉLIORATIONS :
+- Interface de mise à jour avec dialogue détaillé et journal des modifications
+- Script d'installation étape par étape avec messages de progression
+- Sauvegarde automatique de l'ancien dossier dist avant installation
+- Vérification de l'intégrité des fichiers téléchargés (checksum)
+- Nettoyage automatique des fichiers temporaires après installation
+- Gestion des erreurs avec restauration automatique en cas d'échec
+- Support des téléchargements partiels avec reprise automatique
+- Amélioration de la stabilité et de la fiabilité du processus de mise à jour
+=== Version 7.2.4 (02 Janvier 2025) ===
+✨ NOUVEAUTÉS :
+- Ajout de la Gestion de Stock Annuel conforme à la Circulaire 007
+- Séparation des entrées en deux colonnes distinctes : Approvisionnement et Transfert Entrée
+- Affichage des produits ajoutés après le stock initial dans le plan de gestion annuel
+
+🐛 CORRECTIONS :
+- Correction de l'affichage des notifications (affichage uniquement si nombre d'articles > 0)
+- Correction de l'affichage des produits dans le plan de gestion (affichage des produits ajoutés via approvisionnement/transfert entrée)
+- Correction des paramètres SQL dans la requête du plan de gestion
+- Nettoyage du code (suppression de classes inutilisées)
+
+🔧 AMÉLIORATIONS :
+- Interface du tableau de gestion annuelle adaptée aux grands écrans (14", 18", 21")
+- Tableau de gestion annuelle redimensionnable et responsive
+- Colonnes du tableau avec largeurs minimales et préférées optimisées
+- Messages de statut améliorés avec compteurs de mouvements détaillés
+
+=== Version 1.1.0 (20 Janvier 2024) ===
+✨ NOUVEAUTÉS :
+- Mode personnel avec autocomplétion
+- Gestion des mouvements de stock annuels
+- Notifications de péremption améliorées
+
+🐛 CORRECTIONS :
+- Bug d'arrondi des montants
+- Problème d'encodage des PDF
+- Optimisation des performances
+
+🔧 AMÉLIORATIONS :
+- Interface plus rapide
+- Meilleure gestion des erreurs
+- Logs détaillés
+
+=== Version 1.0.0 (15 Décembre 2023) ===
+Version initiale
