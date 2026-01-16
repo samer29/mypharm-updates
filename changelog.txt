@@ -1,3 +1,47 @@
+=== Version 7.3.0 (16 Janvier 2026) ===
+✨ NOUVEAUTÉS :
+- 🛒 Système complet de gestion de Bon de Commande
+  * Création de Bon de Commande avec sélection de Fournisseur, DCI et Quantité
+  * Numérotation automatique au format INT+ANNÉE (ex: 00012026)
+  * Génération de PDF professionnel pour les Bon de Commande
+  * Table de suivi de tous les Bon de Commande avec statuts (EN_ATTENTE, PARTIELLEMENT_LIVRE, COMPLETEMENT_LIVRE)
+  
+- 📦 Système d'attachement de BL aux Bon de Commande
+  * Attachement automatique des BL lors de la création d'Approvisionnement
+  * Attachement manuel de BL existants aux Bon de Commande
+  * Validation automatique des produits (le BL doit contenir au moins un produit correspondant)
+  * Prévention de la duplication (un BL ne peut être attaché qu'à un seul Bon de Commande)
+  
+- 📊 Système de statistiques et suivi
+  * Calcul automatique des pourcentages de livraison par produit
+  * Statistiques globales par Bon de Commande (Total Demandé, Total Livré, Pourcentage Global)
+  * Statistiques par Fournisseur (nombre total de commandes, commandes livrées)
+  * Affichage des statistiques dans l'interface et après attachement de BL
+  
+- 🔍 Recherche et auto-complétion améliorées
+  * Combo DCI éditable avec recherche en temps réel
+  * Ajout automatique de DCI manquants à la base de données
+  * Mise à jour automatique des listes après ajout de nouveaux éléments
+
+🐛 CORRECTIONS :
+- Correction de l'incrémentation des numéros BL (le système génère maintenant toujours un nouveau numéro au lieu de réutiliser un BL existant)
+- Ajout du Fournisseur dans les tableaux et rapports PDF des BL
+- Amélioration du message de succès pour Approvisionnement : affichage du NBL généré automatiquement
+- Correction de la validation lors de l'attachement de BL (vérification que les produits correspondent)
+
+🔧 AMÉLIORATIONS :
+- Interface utilisateur du Bon de Commande avec 3 onglets : Création, Liste, Attachement BL
+- Génération de PDF avec en-tête personnalisé, table des produits (DCI et Quantité uniquement), signatures
+- Suppression des champs prix du formulaire Bon de Commande (on ne connaît pas les prix à la commande)
+- Interface améliorée avec colonnes redimensionnables et responsive
+- Base de données optimisée avec nouvelles tables : bon_de_commande, bon_de_commande_details, bon_de_commande_bl_attachments
+
+📋 NOTES TECHNIQUES :
+- Nouveau schéma de base de données pour le système Bon de Commande avec relations CASCADE
+- Les BL sont maintenant vérifiés dans les deux tables (bllocal et facture) pour l'incrémentation
+- Le système de validation des produits utilise une comparaison insensible à la casse
+- Mise à jour de la version dans AboutController, AutoUpdateService et tous les fichiers associés
+
 === Version 7.2.9 (10 Janvier 2026) ===
 ✨ NOUVEAUTÉS :
 - Amélioration de la recherche de DCI dans MouvementTracker pour gérer les cas où le DCI est modifié dans la table Stock
