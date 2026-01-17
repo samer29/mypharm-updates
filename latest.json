@@ -4,7 +4,7 @@
   "changelog": "https://mypharm-updates.vercel.app/changelog.txt",
   "release_date": "2026-01-16",
   "min_java_version": "11",
-  "file_size": 86035,
-  "checksum": "9A6422A24FB8EEF3169B647FB707C194839F334B6E0F7EB2FF219305132728DA",
+  "file_size": 86045,
+  "checksum": "3ACD4A9DA62E47700F09614FAD7DE776933AAED080AD72FF28263B91A35B57A9",
   "mandatory": false
 }
